@@ -1,16 +1,11 @@
 import pyowm
 import time
 
-# Set up OpenWeatherMap API key
-owm = pyowm.OWM('YOUR-API-KEY-HERE')
-
-# Set up watering time (in seconds)
-watering_time = 10
 
 # Define function to check the weather and water the plants if necessary
 def check_weather_and_water_plants():
     # Get current weather for your location
-    observation = owm.weather_at_place('YOUR-LOCATION-HERE')
+    observation = owm.weather_at_place(location)
     w = observation.get_weather()
     # Check if it's raining
     is_raining = w.get_rain().get('1h', 0) > 0
@@ -21,7 +16,18 @@ def check_weather_and_water_plants():
         time.sleep(watering_time)
 
 # Main loop
-while True:
-    check_weather_and_water_plants()
-    # Wait for some time before checking the weather again
-    time.sleep(60)
+
+
+if __name__ == '__main__':
+    pyown_api_key = 'd1474d4367c8c2cfb7bd6ba566f34f94'
+    location = '[43.7001, -79.4163]'
+
+    # Set up OpenWeatherMap API key
+    owm = pyowm.OWM(pyown_api_key)
+    # Set up watering time (in seconds)
+    watering_time = 10
+
+    while True:
+        check_weather_and_water_plants()
+        # Wait for some time before checking the weather again
+        time.sleep(60)
