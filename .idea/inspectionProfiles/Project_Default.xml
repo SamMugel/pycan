@@ -1,0 +1,31 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyMissingOrEmptyDocstringInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="17">
+            <item index="0" class="java.lang.String" itemvalue="scipy" />
+            <item index="1" class="java.lang.String" itemvalue="numpy" />
+            <item index="2" class="java.lang.String" itemvalue="jax" />
+            <item index="3" class="java.lang.String" itemvalue="jaxlib" />
+            <item index="4" class="java.lang.String" itemvalue="pennylane-qiskit" />
+            <item index="5" class="java.lang.String" itemvalue="pennylane" />
+            <item index="6" class="java.lang.String" itemvalue="pennylane-cirq" />
+            <item index="7" class="java.lang.String" itemvalue="pennylane-qulacs" />
+            <item index="8" class="java.lang.String" itemvalue="qiskit" />
+            <item index="9" class="java.lang.String" itemvalue="pennylane-lightning" />
+            <item index="10" class="java.lang.String" itemvalue="pandas" />
+            <item index="11" class="java.lang.String" itemvalue="singularity" />
+            <item index="12" class="java.lang.String" itemvalue="cirq" />
+            <item index="13" class="java.lang.String" itemvalue="dwave-system" />
+            <item index="14" class="java.lang.String" itemvalue="dwave-hybrid" />
+            <item index="15" class="java.lang.String" itemvalue="dimod" />
+            <item index="16" class="java.lang.String" itemvalue="pylatexenc" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
