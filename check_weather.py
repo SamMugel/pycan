@@ -21,10 +21,21 @@ class CheckWeather:
         self.owm = pyowm.OWM(self.pyown_api_key)
         self.daily_forecast = self.get_daily_forecast()
 
+    def get_coords(self):
+        mgr = self.owm.geocoding_manager()
+        # geocode London (no country specified) - we'll get many results
+        list_of_locations = mgr.geocode(self.location)
+        location = list_of_locations[0]  # taking the first London in the list
+        return location.lat, location.lon
+
     def get_daily_forecast(self):
         manager = self.owm.weather_manager()
         one_call = manager.one_call(*self.get_coords())
         return one_call.forecast_daily
+
+    def date(self, day_index: int = 0):
+        date = self.daily_forecast[day_index].ref_time
+        return convert_timestamp(date)
 
     def daily_precipitation(self, day_index: int = 0):
         precipitation = self.daily_forecast[day_index].rain
@@ -33,17 +44,6 @@ class CheckWeather:
     def daily_weather(self, day_index: int = 0):
         weather = self.daily_forecast[day_index].status
         return weather
-
-    def date(self, day_index: int = 0):
-        date = self.daily_forecast[day_index].ref_time
-        return convert_timestamp(date)
-
-    def get_coords(self):
-        mgr = self.owm.geocoding_manager()
-        # geocode London (no country specified) - we'll get many results
-        list_of_locations = mgr.geocode(self.location)
-        location = list_of_locations[0]  # taking the first London in the list
-        return location.lat, location.lon
 
 
 if __name__ == '__main__':
