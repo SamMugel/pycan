@@ -1,14 +1,14 @@
 import time
 import RPi.GPIO as GPIO
 
-GPIO.setmode(GPIO.BCM)
 
-relay_channel = 17
-GPIO.setup(relay_channel, GPIO.OUT)
-GPIO.output(relay_channel, GPIO.LOW)
+class RelayController:
+    relay_channel = 17
 
-time.sleep(2)
-
-GPIO.output(relay_channel, GPIO.HIGH)
-
-GPIO.cleanup()
+    def activate(self, interval: float) -> None:
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(self.relay_channel, GPIO.OUT)
+        GPIO.output(self.relay_channel, GPIO.LOW)
+        time.sleep(interval)
+        GPIO.output(self.relay_channel, GPIO.HIGH)
+        GPIO.cleanup()

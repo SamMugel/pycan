@@ -1,5 +1,5 @@
 import time
-
+from check_weather import CheckWeather, should_i_water
 
 def water_plants(watering_time: int):
     # Get current weather for your location
@@ -14,6 +14,10 @@ def water_plants(watering_time: int):
 if __name__ == '__main__':
     # Set up watering time (in seconds)
     watering_time = 10
+
+    check_weather = CheckWeather()
+    print("decision to water: %s" % should_i_water(check_weather.passed_rain()))
+
     while True:
         water_plants(watering_time)
         # Wait for some time before checking the weather again
