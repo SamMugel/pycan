@@ -2,7 +2,7 @@ import time
 import RPi.GPIO as GPIO
 
 
-class RelayController:
+class RelayControl:
     relay_channel = 17
 
     def activate(self, interval: float) -> None:
