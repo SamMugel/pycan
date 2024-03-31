@@ -1,5 +1,8 @@
 import time
-import RPi.GPIO as GPIO
+try:
+    import RPi.GPIO as GPIO
+except ModuleNotFoundError:
+    pass
 
 
 class RelayControl:
@@ -12,3 +15,4 @@ class RelayControl:
         time.sleep(interval)
         GPIO.output(self.relay_channel, GPIO.HIGH)
         GPIO.cleanup()
+

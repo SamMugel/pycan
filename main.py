@@ -1,26 +1,46 @@
-from datetime import date
 from check_weather import CheckWeather, should_i_water
 from relay_control import RelayControl
+from log import Log
 
 
-def log(decision_to_water: bool):
-    log = "Today's date, {0}\n".format(date.today())
-    log += "decision to water, {0}\n\n".format(decision_to_water)
-    for i in range(2):
-        log += "day index, {0}\n".format(i)
-        log += "date, {0}\n".format(check_weather.date(i))
-        log += "precipitation, {0}mm\n\n".format(check_weather.daily_precipitation(i))
+class RunParameters:
+    def __init__(self, watering_time, watering_mode):
+        self.watering_time = watering_time
+        self.watering_mode = watering_mode
 
-    return log
+    def __iter__(self):
+        for attr, value in vars(self):
+            yield attr, value
 
 
 if __name__ == '__main__':
+
+#         run_mode = "running_on_pi"
+#     except ModuleNotFoundError:
+#         from fake_relay_control import RelayControl
+#         run_mode = "running_on_pi"
+
     # Set up watering time (in seconds)
-    watering_time = 10
-    check_weather = CheckWeather()
+    run_params = RunParameters(
+        watering_time=10,
+        watering_mode="daily",
+    )
 
-    decision_to_water = should_i_water(check_weather.passed_rain())
+    log = Log(run_params)
+
+    # TODO define two watering modes: daily and when_necessary
+    # TODO define a class WateringParameters & store to log
+    # TODO switch watering mode to daily and store run_mode in log (depends on if RelayControl imports RPi)
+    # check_weather = CheckWeather()
+
+    # decision_to_water = should_i_water(check_weather.passed_rain())
+    decision_to_water = False
+    # date = check_weather.date(i)
+    # precipitation = check_weather.daily_precipitation(i)
+
+    log.add_watering_specification(decision_to_water=decision_to_water)
+
     if decision_to_water:
-        RelayControl().activate(watering_time)
+        RelayControl().activate(run_params.watering_time)
 
-    print(log(decision_to_water))
+    print(log)
